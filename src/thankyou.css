@@ -1,0 +1,233 @@
+/* src/thankyou2.css
+   Scoped styles for the new Thank You page. All classes prefixed with ty2- to avoid conflicts.
+*/
+
+:root {
+  --card-w: clamp(760px, 80vw, 1100px);
+  --accent-a: #4ec7f3;
+  --accent-b: #42c58a;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.03);
+  --muted: #9ddfb0;
+  --text: #e9fff0;
+}
+
+/* container so NavBar fixed position doesn't overlap */
+.ty2-root {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 2.4rem 1.25rem;
+  background: linear-gradient(180deg, #fbfdff 0%, #f6f9fa 8%, #ffffff 20%);
+}
+
+/* stage for centering and confetti */
+.ty2-stage {
+  width: 100%;
+  max-width: var(--card-w);
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 1rem;
+}
+
+/* confetti (pure CSS animated little rectangles) */
+.ty2-confetti {
+  position: absolute;
+  inset: -10% -5%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.ty2-confetti span {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+  transform-origin: center;
+  animation: ty2-confetti 2000ms linear infinite;
+  will-change: transform, opacity;
+}
+.ty2-confetti .ty2-c1 { left: 10%; top: -4%; background: #ffb3b3; animation-delay: 0; }
+.ty2-confetti .ty2-c2 { left: 22%; top: -6%; background: #ffd59e; animation-delay: 140ms; }
+.ty2-confetti .ty2-c3 { left: 34%; top: -5%; background: #ffe399; animation-delay: 260ms; }
+.ty2-confetti .ty2-c4 { left: 46%; top: -7%; background: #b3ffd6; animation-delay: 380ms; }
+.ty2-confetti .ty2-c5 { left: 58%; top: -6%; background: #9ed6ff; animation-delay: 520ms; }
+.ty2-confetti .ty2-c6 { left: 70%; top: -5%; background: #d7b3ff; animation-delay: 640ms; }
+.ty2-confetti .ty2-c7 { left: 82%; top: -6%; background: #ffd6f0; animation-delay: 760ms; }
+
+/* duplicate some with different lefts to make 14 */
+.ty2-confetti .ty2-c1:nth-child(8) { left: 15%; animation-delay: 320ms; }
+.ty2-confetti .ty2-c2:nth-child(9) { left: 28%; animation-delay: 460ms; }
+.ty2-confetti .ty2-c3:nth-child(10) { left: 40%; animation-delay: 580ms; }
+.ty2-confetti .ty2-c4:nth-child(11) { left: 52%; animation-delay: 720ms; }
+.ty2-confetti .ty2-c5:nth-child(12) { left: 64%; animation-delay: 860ms; }
+.ty2-confetti .ty2-c6:nth-child(13) { left: 76%; animation-delay: 960ms; }
+.ty2-confetti .ty2-c7:nth-child(14) { left: 88%; animation-delay: 1080ms; }
+
+@keyframes ty2-confetti {
+  0% { transform: translateY(-8vh) rotate(0deg) scale(1); opacity: 1; }
+  60% { transform: translateY(40vh) rotate(240deg) scale(1.05); opacity: 0.95; }
+  100% { transform: translateY(80vh) rotate(480deg) scale(0.9); opacity: 0; }
+}
+
+/* main glossy card */
+.ty2-card {
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.25rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,250,250,0.98));
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(10, 20, 30, 0.12), 0 6px 20px rgba(0,0,0,0.06);
+  z-index: 2;
+  overflow: hidden;
+  align-items: center;
+  transform-origin: center;
+  animation: ty2-card-in 420ms cubic-bezier(.2,.9,.2,1);
+}
+@keyframes ty2-card-in {
+  from { transform: translateY(8px) scale(.995); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* left: summary and actions */
+.ty2-card-left {
+  padding-right: 0.5rem;
+}
+.ty2-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-b), var(--accent-a));
+  box-shadow: 0 8px 26px rgba(66,197,154,0.12), 0 3px 8px rgba(78,199,243,0.06);
+  margin-bottom: 0.8rem;
+}
+.ty2-check {
+  width: 36px;
+  height: 36px;
+  fill: white;
+  transform: translateY(0);
+  animation: ty2-check-pop 540ms cubic-bezier(.2,.9,.2,1);
+}
+@keyframes ty2-check-pop { from { transform: scale(.6) rotate(-10deg); opacity: 0 } to { transform: scale(1) rotate(0); opacity: 1 } }
+
+.ty2-title {
+  margin: 0 0 .35rem 0;
+  font-size: 1.6rem;
+  color: #05220f;
+  letter-spacing: -0.4px;
+}
+.ty2-subtle {
+  margin: 0 0 1rem 0;
+  color: #2b6b4b;
+  opacity: 0.9;
+}
+
+/* summary rows */
+.ty2-summary {
+  background: var(--glass-2);
+  border-radius: 10px;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.ty2-summary-empty { color:#777; font-style: italic; padding: 0.7rem; }
+.ty2-row { display:flex; gap: .6rem; align-items:center; padding: .22rem 0; color:#18422d; }
+.ty2-row strong { color:#0d3a2a; min-width:72px; }
+
+/* ride id + copy */
+.id-row { align-items:center; gap:.5rem; }
+.ty2-id {
+  background: linear-gradient(90deg, rgba(78,199,243,0.12), rgba(66,197,154,0.06));
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #063b2f;
+  margin-left: 6px;
+}
+.ty2-copy {
+  margin-left: 8px;
+  background: transparent;
+  border: 1px solid rgba(10,10,10,0.06);
+  padding: 0.38rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #063b2f;
+  background: white;
+  box-shadow: 0 6px 12px rgba(2,2,2,0.03);
+}
+.ty2-copy:hover { transform: translateY(-2px); }
+
+/* actions */
+.ty2-actions { display:flex; gap: .6rem; margin-top: .8rem; }
+.ty2-btn {
+  padding: .6rem .95rem;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  display:inline-grid;
+  place-items:center;
+  cursor:pointer;
+}
+.ty2-btn.primary {
+  background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  color: #05231f;
+  box-shadow: 0 12px 26px rgba(78,199,243,0.12);
+}
+.ty2-btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(11,23,18,0.06);
+  color: #0b3a0b;
+}
+
+/* right: hero banner */
+.ty2-card-right {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  min-height: 200px;
+}
+.ty2-hero { text-align:center; position:relative; }
+.ty2-flip { height: 44px; overflow:hidden; display:inline-block; margin-bottom: .6rem; }
+.ty2-flip > div > div { color: #fff; padding:6px 16px; height:38px; margin-bottom:38px; display:inline-block; border-radius:8px; font-weight:800; letter-spacing: .6px; }
+.ty2-flip > div:first-child { animation: ty2-show 5s linear infinite; }
+.ty2-flip div div { background: linear-gradient(90deg, var(--accent-a), var(--accent-b)); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+@keyframes ty2-show {
+  0% { margin-top: -270px; }
+  5% { margin-top: -180px; }
+  33% { margin-top: -180px; }
+  38% { margin-top: -90px; }
+  66% { margin-top: -90px; }
+  71% { margin-top: 0px; }
+  99.99% { margin-top: 0px; }
+  100% { margin-top: -270px; }
+}
+.ty2-hero-text { margin: 0; font-size: 1.05rem; color: #07341f; display:flex; gap:.5rem; align-items:center; justify-content:center; }
+.ty2-hero-pill { display:inline-block; background: linear-gradient(90deg, var(--accent-b), var(--accent-a)); padding: .35rem .6rem; border-radius:6px; color:#022323; font-weight:900; box-shadow: 0 8px 22px rgba(78,199,243,0.08); }
+
+/* note under card */
+.ty2-note { margin-top: 1.25rem; color: #5a725e; text-align:center; font-size:.95rem; }
+
+/* responsive */
+@media (max-width: 920px) {
+  .ty2-card { grid-template-columns: 1fr; padding:1.25rem; gap:1rem; }
+  .ty2-card-right { order: 1; }
+  .ty2-card-left { order: 2; }
+  .ty2-stage { padding: .5rem; }
+  .ty2-confetti { display:none; }
+}
+
+/* reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  .ty2-confetti span, .ty2-flip > div:first-child { animation: none; }
+  .ty2-card { animation: none; }
+}

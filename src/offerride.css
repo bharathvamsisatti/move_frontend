@@ -1,0 +1,436 @@
+/* ==========================================
+      Offer Ride – centered card + map styling
+      *DIGITAL DAYLIGHT THEME UPDATE & ALIGNMENT FIX*
+  ========================================== */
+
+/* Basic reset (scoped to this file usage) */
+* {
+  box-sizing: border-box;
+}
+
+/* Updated Global Styles for Light Theme */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: #f8f9fa; /* Light Grey/White Background */
+  color: #1f2937; /* Dark Text */
+  justify-content: center;
+}
+
+/* Background video element styling removed as video is removed from JSX */
+.offr-bg-video {
+  display: none; 
+}
+
+/* Page container: full-width stripe under navbar */
+.offr-page {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+
+  min-height: calc(100vh - 76px); 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  
+  /* --- FIX: Top padding for explicit clearance below the NavBar --- */
+  padding: 100px 20px 40px; 
+  
+  margin: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+/* Offer ride card centered in page - Clean White Card */
+.offr-card {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  background: #ffffff; /* Pure White Card */
+  border-radius: 18px;
+  padding: 28px 32px 26px;
+  /* Clean, prominent shadow for lift */
+  box-shadow: 0 20px 40px rgba(17, 24, 39, 0.1); 
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #e5e7eb; /* Subtle border */
+}
+
+/* Titles / intro */
+.offr-card h2 {
+  margin: 0 0 4px;
+  font-weight: 700;
+  color: #111827; /* Very Dark Title */
+  font-size: 1.6rem;
+}
+
+.offr-card p {
+  margin: 0 0 18px;
+  color: #6b7280; /* Grey subtitle */
+  font-size: 0.95rem;
+}
+
+/* Form inputs */
+.offr-input {
+  margin-bottom: 18px;
+}
+
+.offr-input label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151; /* Dark label text */
+  font-size: 0.9rem;
+}
+
+.offr-input input,
+.offr-input textarea,
+.offr-input select {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db; /* Light grey border */
+  background: #f9fafb; /* Off-white input background */
+  color: #1f2937; /* Dark input text */
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: none;
+  caret-color: #6b5bff; /* Purple cursor */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus State: Vibrant Accent Border */
+.offr-input input:focus,
+.offr-input textarea:focus,
+.offr-input select:focus {
+  border-color: #6b5bff; /* Electric Purple accent */
+  box-shadow: 0 0 0 2px rgba(107, 91, 255, 0.2);
+}
+
+/* two-column row */
+.offr-row {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.offr-col-half {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Distance text */
+.offr-distance {
+  color: #00d7b3; /* Cyan/Green accent */
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px dashed #e5e7eb;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+/* Submit button - High Contrast Gradient */
+.offr-btn {
+  width: 100%;
+  padding: 13px 14px;
+  /* Retain your original vibrant gradient for the call to action */
+  background: linear-gradient(90deg, #6b5bff, #00d7b3); 
+  border: none;
+  border-radius: 14px;
+  color: #021021;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  /* Prominent, vibrant shadow */
+  box-shadow: 0 8px 20px rgba(0, 215, 179, 0.45);
+  transition: all 0.2s ease;
+}
+
+.offr-btn:hover {
+    box-shadow: 0 12px 30px rgba(0, 215, 179, 0.6);
+}
+
+.offr-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* Messages - Standard Light Theme Feedback */
+.offr-message {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.offr-message.success {
+  background: #ecfdf5; /* Light green background */
+  color: #059669; /* Dark green text */
+  border: 1px solid #a7f3d0;
+}
+
+.offr-message.error {
+  background: #fef2f2; /* Light red background */
+  color: #ef4444; /* Bright red text */
+  border: 1px solid #fecaca;
+}
+
+/* small error text */
+.offr-err {
+  color: #dc2626; /* Standard red error */
+  margin-top: 4px;
+  display: block;
+  font-size: 0.8rem;
+}
+
+/* GPS pill button inside OfferRide inputs */
+.offr-gps-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.offr-gps-btn:hover {
+  background: #e0e7ff;
+}
+
+/* Photon suggestions (shared with FindRide) */
+.location-suggestions {
+  position: absolute;
+  z-index: 1500;
+  background: #ffffff; /* White background for suggestions */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  margin-top: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 4px 0;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+}
+
+.location-suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.location-suggestion-item:hover {
+  background: #f3f4ff; /* Light accent hover */
+}
+
+/* Route map inside OfferRide - Sleeker container */
+.offr-route-map-container {
+  margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(17, 24, 39, 0.08); 
+  background: #e5edf6;
+}
+
+.offr-route-map {
+  width: 100%;
+  height: 260px;
+}
+
+/* Location picker modal (shared) */
+.loc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 20, 0.42); /* Light transparent backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.loc-modal {
+  background: #ffffff; /* White modal background */
+  border-radius: 16px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 20px 60px rgba(10, 20, 40, 0.28);
+  width: min(520px, 100% - 40px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #d1d5db;
+}
+
+.loc-modal-title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0b1724;
+}
+
+.loc-map {
+  width: 100%;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.loc-modal-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Autofill safety - Adapted for light theme */
+.offr-card input,
+.offr-card textarea,
+.offr-card select {
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #1f2937 !important; /* Dark text on light bg */
+  transition: background-color 5000s ease-in-out 0s !important;
+  box-shadow: 0 0 0px 1000px #f9fafb inset !important; /* Light input bg */
+}
+
+/* ------------- Responsive ------------- */
+
+@media (max-width: 920px) {
+  .offr-page {
+    /* Ensure mobile view also has enough top padding */
+    padding: 100px 10px 32px; 
+  }
+
+  .offr-card {
+    padding: 20px 18px 18px;
+    max-width: 94vw;
+    border-radius: 14px;
+  }
+
+  .offr-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .offr-route-map {
+    height: 220px;
+  }
+}
+/* Reduced motion remains for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .offr-bg-video {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+
+
+
+
+/* ==========================================
+   OFFER RIDE – LAYOUT (LOTTIE + FORM)
+========================================== */
+
+.offr-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 48px;
+
+  align-items: center;
+}
+
+/* LEFT SIDE (Lottie + Quote) */
+.offr-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 20px;
+}
+
+
+
+
+/* Lottie animation sizing */
+.offr-lottie {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+
+  /* extra upward nudge */
+  transform: translateY(-40px);
+}
+
+
+
+/* Quote text */
+.offr-quote {
+  margin-top: -10px;   /* was 22px */
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #111827;
+}
+
+/* Quote subtitle */
+.offr-quote-sub {
+  margin-top: 6px;
+}
+
+/* ------------------------------------------
+   RESPONSIVE (STACK ON MOBILE)
+------------------------------------------- */
+@media (max-width: 980px) {
+  .offr-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .offr-left {
+    order: -1;
+    padding: 0;
+  }
+
+  .offr-lottie {
+    max-width: 300px;
+  }
+}
+
+.offr-left {
+  border: 2px solid blue;
+}
+
+.offr-lottie {
+  border: 3px solid red;
+}
+

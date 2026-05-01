@@ -1,0 +1,153 @@
+/* navbar.css
+   Full-width sticky navbar with centered inner container and stable logo sizing
+   Targets both hp-logo-video and np-logo-video (both used in different files)
+*/
+
+/* reset for header area */
+.np-navbar,
+.header-full {
+  box-sizing: border-box;
+}
+
+/* Full-bleed fixed/sticky nav across entire viewport */
+.np-navbar {
+  position: fixed;           /* keep at top */
+  inset: 0 0 auto 0;         /* top:0; left:0; right:0 */
+  width: 100vw !important;   /* ensure full viewport width */
+  z-index: 1100;
+  height: 100px;              /* nav height used elsewhere for spacing */
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));
+  box-shadow: 0 6px 18px rgba(7,10,14,0.06);
+  display: flex;
+  align-items: center;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: none;
+}
+
+/* Inner centered container: keeps nav content aligned with page */
+.np-container {
+  width: 100%;
+  max-width: 1200px;   /* adjust to your site's max width */
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Branding block (left) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+/* clickable brand link */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* video/logo sizing - small and stable across pages */
+.hp-logo-video,
+.np-logo-video,
+.brand .hp-logo-video,
+.brand .np-logo-video {
+  width: 100px !important;       /* fixed, small size */
+  height: 100px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+  object-fit: cover !important;
+  border-radius: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  background: #fff;
+}
+
+/* small brand text (beside logo) */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+.brand-text .title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0b1220;
+}
+.brand-text .subtitle {
+  font-size: 0.8rem;
+  color: #6b7380;
+}
+
+/* Main nav links (center-ish) */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: end;
+  flex: 1 1 auto;
+}
+
+/* link appearance */
+.nav-links a {
+  color: #071428;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 180ms ease, transform 120ms ease;
+}
+.nav-links a:hover {
+  background: rgba(107,91,255,0.07);
+  transform: translateY(-2px);
+}
+.nav-links a.active {
+  background: rgba(107,91,255,0.12);
+  color: #3e2fe0;
+}
+
+/* keep nav links from pushing into logo on small screens */
+@media (max-width: 920px) {
+  .nav-links { gap: 10px; padding-left: 8px; }
+  .np-container { padding: 0 14px; }
+}
+
+/* Right area reserved (profile / controls) - if not present, leaves space */
+.nav-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+/* Make sure page content does not hide under fixed nav.
+   If your app already inserts a spacer div (height: nav height), you can skip this.
+   Otherwise add this small helper to body content container (applies when nav exists). */
+.app-content {
+  padding-top: 76px; /* same height as .np-navbar */
+}
+
+/* Safety: prevent video from expanding due to CSS inheritance from other files */
+.hp-logo-video * { max-width: none !important; max-height: none !important; }
+
+/* Optional: subtle border at bottom to separate content */
+.np-navbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.02), rgba(0,0,0,0.0));
+  pointer-events: none;
+}

@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+/* ROOT */
+.profile-container {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ececee;
+  background-color: #1f2029;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 4%;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ───────────────── LOGO (LEFT SIDE) ───────────────── */
+
+.profile-logo {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  display: block;
+  z-index: 20;
+  transition: all 250ms ease-in-out;
+}
+
+.profile-logo-video {
+  width: 70px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+/* ───────────── MENU TOGGLE (hamburger) ───────────── */
+
+.profile-menu-toggle {
+  position: absolute;
+  left: -9999px;
+}
+
+.profile-menu-label {
+  position: fixed;
+  top: 45px;
+  right: 70px;
+  display: block;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* three lines icon */
+.profile-menu-label::before,
+.profile-menu-label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  height: 2px;
+  background: #ececee;
+  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+
+.profile-menu-label::before {
+  top: 13px;
+  box-shadow: 0 -7px 0 #ececee;
+}
+
+.profile-menu-label::after {
+  bottom: 13px;
+}
+
+/* when checked → X icon */
+.profile-menu-toggle:checked + .profile-menu-label::before {
+  top: 18px;
+  box-shadow: none;
+  transform: rotate(45deg);
+}
+
+.profile-menu-toggle:checked + .profile-menu-label::after {
+  bottom: 18px;
+  transform: rotate(-45deg);
+}
+
+/* ───────────── NAV BLOB ───────────── */
+
+.profile-nav {
+  position: fixed;
+  top: 25px;
+  right: 35px;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  z-index: 9;
+  overflow: hidden;
+  background-color: #353746;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: profile-border-morph 7s linear infinite;
+  transition:
+    top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+    right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 250ms 1100ms ease,
+    width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes profile-border-morph {
+  0%,
+  100% {
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  }
+  14% {
+    border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
+  }
+  28% {
+    border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
+  }
+  42% {
+    border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+  }
+  56% {
+    border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+  }
+  70% {
+    border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+  }
+  84% {
+    border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
+  }
+}
+
+/* when menu is open → expand blob */
+.profile-menu-toggle:checked ~ .profile-nav {
+  animation-play-state: paused;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 200%;
+  height: 200%;
+  transition:
+    top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 250ms 700ms ease,
+    width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+    height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* NAV links */
+.profile-nav-list {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.profile-nav-list li {
+  margin: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: all 250ms linear;
+}
+
+.profile-nav-list li:nth-child(1) { transition-delay: 200ms; }
+.profile-nav-list li:nth-child(2) { transition-delay: 150ms; }
+.profile-nav-list li:nth-child(3) { transition-delay: 100ms; }
+.profile-nav-list li:nth-child(4) { transition-delay: 50ms; }
+
+.profile-nav-list a {
+  font-size: 7vh;
+  text-transform: uppercase;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #ececee;
+  position: relative;
+  text-decoration: none;
+  transition: color 250ms linear;
+}
+
+.profile-nav-list a:hover {
+  color: #ffeba7;
+}
+
+.profile-nav-list a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2vh;
+  margin-top: -1vh;
+  width: 0;
+  background-color: #353746;
+  opacity: 0.8;
+  transition: width 250ms linear;
+}
+
+.profile-nav-list a:hover::after {
+  width: 100%;
+}
+
+/* when menu open → show links */
+.profile-menu-toggle:checked ~ .profile-nav .profile-nav-list li {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 350ms ease,
+    transform 250ms ease;
+}
+
+.profile-menu-toggle:checked ~ .profile-nav .profile-nav-list li:nth-child(1) { transition-delay: 1400ms; }
+.profile-menu-toggle:checked ~ .profile-nav .profile-nav-list li:nth-child(2) { transition-delay: 1480ms; }
+.profile-menu-toggle:checked ~ .profile-nav .profile-nav-list li:nth-child(3) { transition-delay: 1560ms; }
+.profile-menu-toggle:checked ~ .profile-nav .profile-nav-list li:nth-child(4) { transition-delay: 1640ms; }
+
+/* ───────────── MAIN LAYOUT ───────────── */
+
+.profile-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 140px;   /* leaves space for logo/menu */
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+.profile-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ───────────── PROFILE CARD ───────────── */
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  padding: 28px 40px;
+  border-radius: 18px;
+  background: rgba(10, 16, 32, 0.95);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+  color: #e5e7eb;
+  min-width: 420px;
+  max-width: 720px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  background: #ffeba7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #111827;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-heading {
+  font-size: 1.4rem;
+  margin: 0 0 4px 0;
+  color: #ffeba7;
+}
+
+.profile-name {
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  color: #e5e7eb;
+}
+
+.profile-text {
+  margin: 0 0 16px 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.profile-actions button {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: #ffeba7;
+  color: #111827;
+  transition: 0.2s;
+}
+
+.profile-actions button:hover {
+  background: #facc15;
+}
+
+/* ───────────── TRIP SECTIONS ───────────── */
+
+.trip-section {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.trip-section h2 {
+  font-size: 1.2rem;
+  color: #ffeba7;
+  margin-bottom: 10px;
+}
+
+.trip-section p {
+  margin: 6px 0 0;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+/* grid wrapper for cards */
+.trip-list {
+  margin-top: 10px;
+  padding: 0 10px 10px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 per row */
+  gap: 16px;
+  justify-items: center;
+}
+
+.trip-card {
+  background: rgba(10, 16, 32, 0.95);
+  border-radius: 12px;
+  padding: 14px 18px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.trip-card.past {
+  opacity: 0.75;
+}
+
+.trip-main {
+  font-weight: 600;
+}
+
+.trip-meta {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* ───────────── RESPONSIVE ───────────── */
+
+@media screen and (max-width: 991px) {
+  .profile-logo {
+    top: 30px;
+    left: 20px;
+  }
+
+  .profile-menu-label {
+    top: 40px;
+    right: 40px;
+  }
+
+  .profile-nav {
+    right: 28px;
+  }
+
+  .profile-nav-list a {
+    font-size: 6vh;
+  }
+
+  .profile-main {
+    padding-top: 120px;
+  }
+
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    min-width: 0;
+    margin: 0 16px;
+  }
+
+  .profile-avatar {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .trip-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 per row on tablet */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .trip-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 per row on mobile */
+  }
+
+  .trip-card {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,254 @@
+/* src/about.css
+   Enhanced styling for the About section (hp-about).
+   Drop this file in src/ and import it from HomePage.jsx (e.g. import "./about.css";)
+*/
+
+/* Reuse site variables if present; otherwise provide fallbacks */
+:root {
+  --about-bg: rgba(255,255,255,0.02);
+  --card-bg: rgba(255,255,255,0.03);
+  --muted-2: #98a0ac;
+  --accent-2: var(--neon, #00bfa6);
+  --accent-alt: var(--accent, #6b5cff);
+  --glass-2: rgba(14,20,26,0.03);
+  --shadow-soft: 0 12px 30px rgba(2,6,23,0.06);
+}
+
+/* Section wrapper */
+.hp-about {
+  padding: 40px 20px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.00));
+  margin-top: 10px;
+}
+
+/* central container — keep width consistent with other sections */
+.hp-about .container {
+  max-width: var(--max-width, 1100px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 28px;
+  background: var(--about-bg);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Left column (text) */
+.hp-about h2 {
+  font-size: 1.6rem;
+  margin: 0 0 8px 0;
+  color: var(--text, #071428);
+  letter-spacing: -0.2px;
+}
+.hp-about p.lead {
+  margin: 8px 0 16px 0;
+  color: var(--muted, #6b7380);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
+/* Feature list: icon + text */
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin-top: 14px;
+}
+.feature {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(2,6,23,0.03);
+}
+.feature .icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent-alt));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #021021;
+  font-weight: 800;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  flex: 0 0 44px;
+}
+.feature .meta {
+  display: flex;
+  flex-direction: column;
+}
+.feature .meta b {
+  font-size: 0.98rem;
+  /* color: var(--text, #071428); */
+  color: var(--accent-2);
+  margin-bottom: 2px;
+}
+.feature .meta span {
+  font-size: 0.92rem;
+  color: var(--muted-2);
+}
+
+/* Right column (cards + stats) */
+.about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Quick stats card row */
+.about-stats {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.stat {
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 12px;
+  flex: 1 1 0;
+  text-align: center;
+  border: 1px solid rgba(2,6,23,0.03);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.03);
+}
+.stat .num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-2);
+  display: block;
+}
+.stat .label {
+  font-size: 0.85rem;
+  color: var(--muted-2);
+  margin-top: 6px;
+}
+
+/* Highlight card with CTA */
+.about-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.00));
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(2, 6, 23, 0.03);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    align-items: center;     /* horizontal alignment */
+    justify-content: center; /* vertical alignment */
+
+    text-align: center;      /* center text inside */
+}
+
+.about-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: goldenrod var(--text);
+}
+.about-card p {
+  margin: 0;
+  color: var(--muted-2);
+  font-size: 0.95rem;
+}
+.about-card .about-cta {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Buttons inside about-card should use existing hp-btn styles. Provide subtle overrides: */
+.about-card .hp-btn.primary {
+  padding: 10px 16px;
+  font-weight: 800;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-radius: 10px;
+}
+.about-card .hp-btn.ghost {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(2,6,23,0.04);
+}
+
+/* Decorative small image / illustration */
+/* .about-illustration {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(255,255,255,0.02));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(2,6,23,0.06);
+  font-weight: 800;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(2,6,23,0.02);
+} */
+
+/* subtle overlay / shimmer */
+.about-illustration::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.04), transparent 20%),
+              radial-gradient(circle at 80% 80%, rgba(0,0,0,0.02), transparent 30%);
+  pointer-events: none;
+}
+
+/* Slide-in variations for left/right */
+.hp-about .container .left-col {
+  transform: translateX(-8px);
+  opacity: 0;
+  transition: transform 560ms cubic-bezier(.2,.9,.25,1), opacity 420ms ease;
+  will-change: transform, opacity;
+}
+.hp-about .container .right-col {
+  transform: translateX(8px);
+  opacity: 0;
+  transition: transform 560ms cubic-bezier(.2,.9,.25,1), opacity 420ms ease;
+  will-change: transform, opacity;
+}
+
+/* When the parent scroll-section has .in-view, animate the children */
+.hp-about.scroll-section.in-view .container .left-col,
+.hp-about.scroll-section.in-view .container .right-col {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* small screens: stack */
+@media (max-width: 920px) {
+  .hp-about .container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .about-features { grid-template-columns: 1fr; }
+  .about-stats { flex-direction: row; gap: 8px; }
+  .about-illustration { height: 140px; }
+  .hp-about { padding: 20px 12px; }
+}
+
+/* Accessibility: focus visible for interactive elements inside the about section */
+.hp-about a:focus,
+.hp-about button:focus {
+  outline: 3px solid rgba(0,191,166,0.18);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Reduced motion preference: disable slide/directional transforms */
+@media (prefers-reduced-motion: reduce) {
+  .hp-about .container .left-col,
+  .hp-about .container .right-col,
+  .feature,
+  .scroll-section { transition: none !important; transform: none !important; opacity: 1 !important; }
+}

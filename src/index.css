@@ -1,0 +1,115 @@
+/* =====================================================
+   MOVE APP — GLOBAL STYLES (LIGHT MODE ONLY)
+   This file overrides system & browser dark mode
+   ===================================================== */
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* FORCE LIGHT MODE */
+  color-scheme: light;
+  background-color: #ffffff;
+  color: #213547;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RESET & BASE LAYOUT */
+html,
+body,
+#root {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffffff !important;
+  color: #213547 !important;
+}
+
+/* LINKS */
+a {
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1d4ed8;
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* BUTTONS */
+button {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+
+  background-color: #f9fafb;
+  color: #213547;
+
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+button:hover {
+  background-color: #f3f4f6;
+  border-color: #2563eb;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* FORM ELEMENTS */
+input,
+textarea,
+select {
+  background-color: #ffffff;
+  color: #213547;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.5em;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* REMOVE SYSTEM DARK MODE EFFECTS COMPLETELY */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+    background-color: #ffffff;
+    color: #213547;
+  }
+
+  html,
+  body,
+  #root {
+    background-color: #ffffff !important;
+    color: #213547 !important;
+  }
+}
+
+/* STOP CHROME AUTO DARKENING */
+* {
+  forced-color-adjust: none;
+}
